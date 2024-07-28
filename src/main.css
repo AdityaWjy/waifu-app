@@ -1,0 +1,27 @@
+.btn-custom-mobile {
+  background-color: #ff4191;
+  border: 2px solid #ff4191;
+  border-radius: 8px;
+  font-weight: 500;
+  color: white;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 23px;
+  padding-right: 23px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-custom-mobile:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+  transition-delay: 0.1s;
+}
+
+.blueOcean {
+  color: #ff4191;
+}
+
+.darkOcean {
+  color: #1e293b;
+}

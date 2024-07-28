@@ -1,17 +1,273 @@
 <template>
   <div>
-    <h1>Daftar Waifu</h1>
-    <input type="file" @change="onFileChange" />
-    <input v-model="waifuName" placeholder="Nama Waifu" />
-    <button @click="createWaifu">Tambah Waifu</button>
+    <!-- navbar start -->
+    <div class="navbar-component">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white">
+          <div class="container-fluid">
+            <img
+              src="../assets/logo.png"
+              alt="Waifu"
+              class="Logo rounded-circle"
+            />
 
-    <ul>
-      <li v-for="waifu in waifus" :key="waifu.id">
-        <img :src="waifu.imageUrl" alt="Waifu" width="100" />
-        <span>{{ waifu.name }}</span>
-        <button @click="deleteWaifu()">Hapus</button>
-      </li>
-    </ul>
+            <button
+              class="navbar-toggler custom-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex ms-auto" role="navbar">
+                <ul class="navbar-nav me-auto mb-2 md:px-5 mb-lg-0 gap-lg-4">
+                  <li class="nav-item">
+                    <a
+                      href="#home"
+                      class="nav-link fw-medium"
+                      aria-current="page"
+                      >Home</a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a
+                      href="#form"
+                      class="nav-link fw-medium"
+                      aria-current="page"
+                      >Form</a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a
+                      href="#list"
+                      class="nav-link fw-medium"
+                      aria-current="page"
+                      >List Waifu</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- navbar end -->
+
+    <!-- hero start -->
+    <div
+      class="container"
+      style="margin-top: 20px; margin-bottom: 20px"
+      id="home"
+    >
+      <div class="d-sm-block d-md-none">
+        <!-- Div display mobile -->
+        <div class="row row-mobile">
+          <div
+            class="col-md-6 mb-2 d-flex justify-content-center align-self-center mobile"
+          >
+            <img src="../assets/hero.png" width="310px" />
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex h-100">
+              <div class="justify-content-center align-self-center container">
+                <h2 class="mt-3 fw-bold">
+                  Waifu
+
+                  <span class="blueOcean">Wonderland</span>
+                </h2>
+
+                <p class="capitalize fw-normal" style="font-size: 14px">
+                  Waifu Wonderland adalah
+                  <span class="blueOcean fw-semibold">situs</span> untuk
+                  mengunggah dan membagikan gambar
+                  <span class="blueOcean fw-semibold">waifu</span> kesayangan
+                  Anda!
+                  <span class="blueOcean fw-semibold">Bergabunglah</span> dan
+                  tunjukkan
+                  <span class="blueOcean fw-semibold">waifu</span>
+                  favorit Anda sekarang juga.
+                </p>
+
+                <a href="#form" class="btn-custom-mobile text-decoration-none"
+                  >Ak jga maw</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- hero end -->
+
+    <!-- input name and image -->
+    <div class="check-status container" id="form">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="text-center text-md-start text-xl-start mt-4">
+            <h1 class="capitalize">what is waifu?</h1>
+            <p class="capitalize" style="font-size: 14px">
+              Waifu adalah karakter perempuan fiksi dari anime, manga yang
+              dianggap sebagai pasangan ideal.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 ms-auto d-flex align-items-center justify-content-center"
+        >
+          <form class="form-control">
+            <div class="form-input text-start mb-3">
+              <label for="text" class="form-label capitalize fw-medium"
+                >Show me your waifu:</label
+              >
+              <input
+                type="text"
+                class="form-control py-2 mb-2"
+                id="text"
+                placeholder="Your waifu name"
+                v-model="waifuName"
+              />
+              <input
+                type="file"
+                class="form-control py-2"
+                @change="onFileChange"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn-custom-mobile"
+              @click="createWaifu"
+              style="width: 100%"
+            >
+              Submit my waifu
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- input name and image -->
+
+    <!-- card waifu start-->
+
+    <div
+      class="container row-card d-flex jutify-content-center align-items-center gap-3 mt-5 mb-5"
+      id="list"
+    >
+      <div
+        class="card p-2 border-dark d-flex justify-content-center align-items-center"
+        v-for="waifu in waifus"
+        :key="waifu.id"
+      >
+        <img
+          :src="waifu.imageUrl"
+          class="card-img-top image-service rounded"
+          alt="Waifu"
+        />
+        <div class="mt-3">
+          <h5 class="card-title text-center mb-3">{{ waifu.name }}</h5>
+
+          <button class="btn btn-dark" style="width: 120px">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- card waitu end -->
+
+    <!-- Footer -->
+    <footer
+      class="text-center text-lg-start text-white"
+      style="background-color: #262626"
+    >
+      <!-- Section: Links  -->
+      <section class="py-1">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-4 mx-auto">
+              <!-- Content -->
+
+              <img src="../assets/logo.png" alt="Gafin Labs" class="w-50" />
+
+              <p>
+                Di Waifu Wonderland, kami merayakan kecintaan Anda terhadap
+                waifu! <br />
+                cuman ada layout mobile hehe malas bikin desktop
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0"
+              style="margin-top: 40px"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-semibold mb-4">Contact</h6>
+
+              <a
+                href="https://maps.app.goo.gl/gH8XMLGagBtBGQ3A9"
+                target="_blank"
+                class="block text-decoration-none text-white d-xl-flex align-items-center justify-items-center gap-2"
+              >
+                <img
+                  src="../assets/social/location-marker.png"
+                  alt="Location"
+                  class="mb-2"
+                  width="25"
+                />
+                <p
+                  class="d-flex align-items-center justify-items-center text-center text-xl-start pt-2 pt-xl-0"
+                >
+                  Perusahaan Waifu Wonderland berada di Kecamatan Bangsal,
+                  Kabupaten Jomokerto.
+                </p>
+              </a>
+
+              <a
+                href="https://www.instagram.com/ipologize/"
+                target="_blank"
+                class="block text-decoration-none text-white d-xl-flex align-items-center justify-align-center gap-2"
+              >
+                <img
+                  src="../assets/social/instagram.png"
+                  alt="Instagram"
+                  class="mb-2"
+                  width="25"
+                />
+                <p class="text-center text-xl-start pt-1">@ipologize</p>
+              </a>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05)"
+      >
+        © 2024 Copyright: <br />
+        <a
+          class="text-reset fw-bold"
+          href="https://www.instagram.com/ipologize/"
+          target="_blank"
+          >aditya aw aw</a
+        >
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
   </div>
 </template>
 
@@ -92,5 +348,49 @@ export default {
 </script>
 
 <style scoped>
-/* Tambahkan gaya sesuai kebutuhan */
+.Logo {
+  width: 50px;
+}
+
+.nav-link.router-link-exact-active {
+  color: #ff4191;
+  font-weight: 500;
+}
+
+.custom-toggler {
+  border-color: #ff4191; /* Red Border */
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 65,145,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.custom-toggler:focus,
+.custom-toggler:active {
+  outline: none;
+  box-shadow: 0 0 5px #ff4191; /* Red Shadow */
+}
+
+@media (min-width: 992px) {
+  .row-card {
+    row-gap: 15px;
+  }
+
+  .card {
+    width: 10rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  h5 {
+    font-size: 15px;
+  }
+
+  .btn {
+    font-size: 13px;
+  }
+}
 </style>
