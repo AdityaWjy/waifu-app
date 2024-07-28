@@ -122,7 +122,7 @@
         <div
           class="col-md-4 ms-auto d-flex align-items-center justify-content-center"
         >
-          <form class="form-control">
+          <form class="form-control" @submit.prevent>
             <div class="form-input text-start mb-3">
               <label for="text" class="form-label capitalize fw-medium"
                 >Show me your waifu:</label
@@ -170,11 +170,11 @@
             <div class="mt-3">
               <h5 class="card-title text-center mb-3">{{ waifu.name }}</h5>
               <button
-                @click="deleteWaifu(waifu.id)"
+                @click="exploreWaifu()"
                 class="btn btn-dark"
                 style="width: 120px"
               >
-                Delete
+                Explore
               </button>
             </div>
           </div>
@@ -190,6 +190,7 @@
 
 <script>
 import footercomponent from "../components/footercomponent.vue";
+import { useToast } from "vue-toastification";
 // import firebase
 import { ref } from "vue";
 import { db, storage } from "../firebase";
@@ -213,6 +214,7 @@ export default {
 
   setup() {
     // set tipe data
+    const toast = useToast();
     const waifus = ref([]);
     const waifuName = ref("");
     const file = ref(null);
@@ -251,17 +253,23 @@ export default {
         waifuName.value = "";
         file.value = null;
         fetchWaifus();
+        toast.success("Waifu berhasil ditambahkan!");
       } catch (error) {
-        alert("Cannot create waifu");
+        console.error("Error creating waifu: ", error);
+        toast.error("Terjadi kesalahan saat menambahkan waifu!");
       }
     };
 
     // delete data waifu
 
-    const deleteWaifu = async (id) => {
-      await deleteDoc(doc(db, "waifus", id));
-      fetchWaifus();
+    const exploreWaifu = () => {
+      toast.info("there will be further updates hehe");
     };
+
+    // const deleteWaifu = async (id) => {
+    //   await deleteDoc(doc(db, "waifus", id));
+    //   fetchWaifus();
+    // };
 
     // call function fecth data waifu
     fetchWaifus();
@@ -271,7 +279,8 @@ export default {
       waifuName,
       onFileChange,
       createWaifu,
-      deleteWaifu,
+      exploreWaifu,
+      toast,
     };
   },
 };
