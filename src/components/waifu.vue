@@ -266,12 +266,6 @@ export default {
     // call function fecth data waifu
     fetchWaifus();
 
-    // clear input form
-    const clearInput = () => {
-      waifuName.value = "";
-      file.value = "";
-    };
-
     return {
       waifus,
       waifuName,
