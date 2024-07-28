@@ -252,7 +252,7 @@ export default {
         file.value = null;
         fetchWaifus();
       } catch (error) {
-        console.error("Error creating waifu: ", error);
+        alert("Cannot create waifu");
       }
     };
 
