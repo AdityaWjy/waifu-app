@@ -9,7 +9,7 @@
       <li v-for="waifu in waifus" :key="waifu.id">
         <img :src="waifu.imageUrl" alt="Waifu" width="100" />
         <span>{{ waifu.name }}</span>
-        <button @click="deleteWaifu(waifu.id)">Hapus</button>
+        <button @click="deleteWaifu()">Hapus</button>
       </li>
     </ul>
   </div>
@@ -74,13 +74,8 @@ export default {
       }
     };
 
-    const deleteWaifu = async (id) => {
-      try {
-        await deleteDoc(doc(db, "waifus", id));
-        fetchWaifus();
-      } catch (error) {
-        console.error("Error deleting waifu: ", error);
-      }
+    const deleteWaifu = () => {
+      alert("Hehe gabisa di delete ya bang?");
     };
 
     fetchWaifus();
